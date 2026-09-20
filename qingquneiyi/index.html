@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="探索情趣内衣的诱惑，提供专业的内衣选购指南、款式分类介绍及私密购物体验建议。从经典蕾丝到现代时尚，助您发现自信与魅力的完美结合。">
+    <meta name="keywords" content="情趣内衣,性感内衣,内衣搭配,魅力提升,私密生活">
+    <title>情趣内衣的诱惑-探索魅力与自信的完美结合</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #d4a373;
+            --secondary-color: #faedcd;
+            --text-dark: #2f3e46;
+            --text-light: #6c757d;
+            --bg-body: #fefae0;
+            --bg-card: #ffffff;
+            --accent-pink: #e63946;
+            --spacing-unit: 1rem;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-btn {
+            background-color: var(--text-dark);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(45, 27, 78, 0.7), rgba(212, 163, 115, 0.6)), url('https://picsum.photos/seed/romance/1920/1080') no-repeat center center/cover;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeIn Up 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        /* Section Styling */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Grid Layouts */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .card-image {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+            background-color: #eee;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .card-link {
+            font-weight: 600;
+            color: var(--text-dark);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .card-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Features Section */
+        .features {
+            background-color: #fff;
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .feature-item h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item p {
+            color: var(--text-light);
+        }
+
+        /* Guide Section */
+        .guide-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .guide-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .guide-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .guide-steps li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-dark);
+        }
+
+        .guide-steps li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .guide-image img {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: #d1d5db;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav {
+                display: none; /* Simplified for mobile demo */
+            }
+
+            .guide-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <span>✦</span> LUMIÈRE
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#styles">款式分类</a></li>
+                    <li><a href="#guide">选购指南</a></li>
+                    <li><a href="#tips">搭配技巧</a></li>
+                    <li><a href="#about">关于我们</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="cta-btn">开启探索</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <h1>发现情趣内衣的诱惑</h1>
+                <p>不仅仅是衣物，更是自信的铠甲与魅力的延伸。探索经典与时尚的交汇，重塑亲密关系中的每一个瞬间。</p>
+                <a href="#styles" class="cta-btn" style="background-color: var(--primary-color);">浏览款式</a>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="features">
+            <div class="container grid-3">
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <h3>私密安全</h3>
+                    <p>全流程加密支付与匿名配送，您的隐私是我们最珍视的承诺。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💎</div>
+                    <h3>精选材质</h3>
+                    <p>选用高品质蕾丝与丝绒，触感柔软亲肤，兼顾透气性与舒适度。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🚀</div>
+                    <h3>极速体验</h3>
+                    <p>专业的物流团队，快速送达，让期待不再等待。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Styles Section -->
+        <section id="styles" class="container">
+            <div class="section-header">
+                <h2>经典款式探索</h2>
+                <p>从经典蕾丝到现代设计，每一种风格都有其独特的魅力。</p>
+            </div>
+            <div class="grid-3">
+                <article class="card">
+                    <img src="https://picsum.photos/seed/lace1/400/300" alt="蕾丝吊带衫" class="card-image">
+                    <div class="card-content">
+                        <span class="card-tag">经典系列</span>
+                        <h3>复古蕾丝吊带</h3>
+                        <p>采用细腻的欧根纱与立体蕾丝拼接，勾勒出优美的肩颈线条，散发优雅而神秘的气息。</p>
+                        <a href="#" class="card-link">了解更多 →</a>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="https://picsum.photos/seed/bdsm2/400/300" alt="丝绒连体衣" class="card-image">
+                    <div class="card-content">
+                        <span class="card-tag">奢华系列</span>
+                        <h3>丝绒连体衣</h3>
+                        <p>丝绒材质自带高级质感，贴合身形设计，在灯光下折射出迷人的光泽，尽显女王风范。</p>
+                        <a href="#" class="card-link">了解更多 →</a>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="https://picsum.photos/seed/lingerie3/400/300" alt="透视薄纱裙" class="card-image">
+                    <div class="card-content">
+                        <span class="card-tag">时尚系列</span>
+                        <h3>透视薄纱裙</h3>
+                        <p>若隐若现的透视效果，搭配精致腰封，是居家派对的绝佳选择，轻松成为焦点。</p>
+                        <a href="#" class="card-link">了解更多 →</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Selection Guide -->
+        <section id="guide" class="container" style="background-color: white; border-radius: 20px; padding: 3rem; margin-bottom: 4rem;">
+            <div class="guide-grid">
+                <div class="guide-image">
+                    <img src="https://picsum.photos/seed/fashion/600/400" alt="内衣搭配展示">
+                </div>
+                <div class="guide-text">
+                    <h3>如何选择最适合您的款式？</h3>
+                    <p>挑选情趣内衣是一门关于审美与自信的艺术。了解自己的身材特点与喜好，是开启这一体验的第一步。</p>
+                    <ul class="guide-steps">
+                        <li><strong>了解身材优势：</strong>如果您拥有优美的锁骨，蕾丝吊带是不错的选择；若腰部线条纤细，包臀裙则能完美展现。</li>
+                        <li><strong>考虑材质偏好：</strong>追求舒适可选纯棉或莫代尔；追求视觉冲击力可选蕾丝或透视网纱。</li>
+                        <li><strong>明确场合需求：</strong>居家日常追求舒适，特殊纪念日或派对则可选择设计感更强、色彩更丰富的款式。</li>
+                        <li><strong>沟通与尝试：</strong>这是最关键的一步。与伴侣坦诚沟通，共同挑选，往往能带来意想不到的惊喜。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips Section -->
+        <section id="tips" class="container">
+            <div class="section-header">
+                <h2>日常搭配与保养技巧</h2>
+                <p>细节决定成败，正确的保养能延长爱衣的寿命。</p>
+            </div>
+            <div class="grid-4">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>正确洗涤</h3>
+                        <p>建议使用中性洗涤剂，冷水手洗或轻柔机洗，避免暴晒和高温烘干，以保持蕾丝的弹性。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>内衣收纳</h3>
+                        <p>使用内衣收纳盒或防尘袋，避免与硬物摩擦，防止蕾丝勾丝，保持衣物平整。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>舒适度优先</h3>
+                        <p>在追求视觉美感的同时，不要忽视穿着的舒适度。合适的尺码能避免勒痕，提升自信。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>自信心态</h3>
+                        <p>无论选择何种款式，自信的态度才是最迷人的装饰。享受探索自我的过程。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>LUMIÈRE</h4>
+                <p style="font-size: 0.9rem; opacity: 0.7;">专注于为现代女性提供高品质、高隐私的时尚内衣选择，让每一天都充满自信与魅力。</p>
+            </div>
+            <div class="footer-col">
+                <h4>选购指南</h4>
+                <ul>
+                    <li><a href="#">尺码对照表</a></li>
+                    <li><a href="#">材质介绍</a></li>
+                    <li><a href="#">清洗保养</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>客户服务</h4>
+                <ul>
+                    <li><a href="#">订单查询</a></li>
+                    <li><a href="#">退换货政策</a></li>
+                    <li><a href="#">隐私保护声明</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>联系我们</h4>
+                <ul>
+                    <li>邮箱：support@lumiere-demo.com</li>
+                    <li>热线：400-123-4567</li>
+                    <li>工作时间：9:00 - 22:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 LUMIÈRE. All Rights Reserved. 未成年人请勿浏览。</p>
+        </div>
+    </footer>
+
+</body>
+</html>
