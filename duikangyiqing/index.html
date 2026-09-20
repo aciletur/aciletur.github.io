@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="对抗疫情的图片大全，收录抗击疫情、医护风采、社区防控及全民抗疫的真实影像，展现众志成城的精神风貌。">
+    <meta name="keywords" content="对抗疫情的图片大全,抗击疫情图片,抗疫素材,医护人员,众志成城">
+    <title>对抗疫情的图片大全-抗击疫情影像与精神风貌记录</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #c8102e;
+            --secondary-color: #1a5f7a;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --border-radius: 8px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header & Nav */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 24px;
+        }
+
+        nav a {
+            font-size: 16px;
+            color: var(--text-main);
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 200px;
+            transition: width 0.3s;
+        }
+
+        .search-box input:focus {
+            width: 240px;
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            background: var(--card-bg);
+            padding: 20px;
+            max-width: var(--container-width);
+            margin: -30px auto 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-label {
+            font-weight: bold;
+            color: var(--text-secondary);
+        }
+
+        .filter-btn {
+            padding: 6px 16px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Gallery Grid */
+        .gallery-container {
+            max-width: var(--container-width);
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .gallery-item {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .image-wrapper {
+            position: relative;
+            padding-top: 75%; /* 4:3 Aspect Ratio */
+            overflow: hidden;
+            background: #eee;
+        }
+
+        .image-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover .image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .item-info {
+            padding: 16px;
+        }
+
+        .item-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .item-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-right: 6px;
+            background: #f0f0f0;
+            color: #666;
+        }
+
+        /* Featured Section */
+        .featured-section {
+            background-color: white;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+        }
+
+        .section-header {
+            max-width: var(--container-width);
+            margin: 0 auto 40px;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 8px auto 0;
+        }
+
+        .featured-content {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .featured-row {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .featured-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .featured-text {
+            flex: 1;
+        }
+
+        .featured-text h3 {
+            font-size: 22px;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .featured-text p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .featured-image {
+            flex: 1.5;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .featured-image img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Statistics Section */
+        .stats-bar {
+            background: var(--secondary-color);
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .stats-grid {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
+            gap: 20px;
+        }
+
+        .stat-item h4 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            color: #ffcc00;
+        }
+
+        .stat-item p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #aaa;
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .footer-content {
+            max-width: var(--container-width);
+            margin: 0 auto;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 24px;
+            }
+            
+            .header-inner {
+                flex-direction: column;
+                height: auto;
+                padding: 10px 0;
+                gap: 10px;
+            }
+
+            nav ul {
+                gap: 12px;
+                font-size: 14px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .featured-row, .featured-row.reverse {
+                flex-direction: column;
+            }
+            
+            .featured-image {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <a href="#" class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+            </svg>
+            <span>抗疫影像库</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">首页</a></li>
+                <li><a href="#">医护风采</a></li>
+                <li><a href="#">社区防控</a></li>
+                <li><a href="#">物资支援</a></li>
+                <li><a href="#">感人瞬间</a></li>
+            </ul>
+        </nav>
+        <div class="search-box">
+            <input type="text" placeholder="搜索相关图片...">
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <h1>对抗疫情的图片大全</h1>
+    <p>记录众志成城的历史瞬间，展现全民抗疫的精神力量</p>
+</section>
+
+<div class="filter-bar">
+    <div class="filter-group">
+        <span class="filter-label">分类筛选：</span>
+        <button class="filter-btn active">全部</button>
+        <button class="filter-btn">医护工作</button>
+        <button class="filter-btn">社区防控</button>
+        <button class="filter-btn">物资运输</button>
+    </div>
+    <div class="filter-group">
+        <span class="filter-label">时间：</span>
+        <button class="filter-btn">最新</button>
+        <button class="filter-btn">热门</button>
+    </div>
+</div>
+
+<main class="gallery-container">
+    <div class="gallery-grid">
+        <!-- Item 1 -->
+        <article class="gallery-item">
+            <div class="image-wrapper">
+                <img src="https://picsum.photos/seed/med1/400/300" alt="医护人员在一线">
+            </div>
+            <div class="item-info">
+                <div>
+                    <span class="tag">医护工作</span>
+                    <span class="tag">坚守</span>
+                </div>
+                <h3 class="item-title">逆行出征：医护人员整装待发</h3>
+                <p class="item-desc">在疫情最严峻的时刻，无数医护人员主动请缨，奔赴抗疫一线，用生命守护生命。</p>
+            </div>
+        </article>
+
+        <!-- Item 2 -->
+        <article class="gallery-item">
+            <div class="image-wrapper">
+                <img src="https://picsum.photos/seed/med2/400/300" alt="社区工作者">
+            </div>
+            <div class="item-info">
+                <div>
+                    <span class="tag">社区防控</span>
+                    <span class="tag">志愿服务</span>
+                </div>
+                <h3 class="item-title">社区里的“守门人”</h3>
+                <p class="item-desc">社区工作者和志愿者不畏严寒，在小区出入口进行测温登记，筑牢基层防线。</p>
+            </div>
+        </article>
+
+        <!-- Item 3 -->
+        <article class="gallery-item">
+            <div class="image-wrapper">
+                <img src="https://picsum.photos/seed/med3/400/300" alt="建设方舱医院">
+            </div>
+            <div class="item-info">
+                <div>
+                    <span class="tag">建设速度</span>
+                    <span class="tag">方舱医院</span>
+                </div>
+                <h3 class="item-title">火神山医院建设现场</h3>
+                <p class="item-desc">中国速度，奇迹诞生。数万名建设者昼夜奋战，仅用十天建成火神山医院。</p>
+            </div>
+        </article>
+
+        <!-- Item 4 -->
+        <article class="gallery-item">
+            <div class="image-wrapper">
+                <img src="https://picsum.photos/seed/med4/400/300" alt="医疗物资">
+            </div>
+            <div class="item-info">
+                <div>
+                    <span class="tag">物资支援</span>
+                    <span class="tag">爱心捐赠</span>
+                </div>
+                <h3 class="item-title">八方支援：物资车驶向一线</h3>
+                <p class="item-desc">全国各地调集医疗物资和生活用品，源源不断地运往疫情重灾区。</p>
+            </div>
+        </article>
+
+        <!-- Item 5 -->
+        <article class="gallery-item">
+            <div class="image-wrapper">
+                <img src="https://picsum.photos/seed/med5/400/300" alt="医护人员">
+            </div>
+            <div class="item-info">
+                <div>
+                    <span class="tag">医护工作</span>
+                    <span class="tag">休息间隙</span>
+                </div>
+                <h3 class="item-title">疲惫但坚定的眼神</h3>
+                <p class="item-desc">脱下防护服的医护人员席地而睡，虽然身体疲惫，但眼神中充满希望。</p>
+            </div>
+        </article>
+
+        <!-- Item 6 -->
+        <article class="gallery-item">
+            <div class="image-wrapper">
+                <img src="https://picsum.photos/seed/med6/400/300" alt="疫苗接种">
+            </div>
+            <div class="item-info">
+                <div>
+                    <span class="tag">全民接种</span>
+                    <span class="tag">健康防护</span>
+                </div>
+                <h3 class="item-title">有序推进疫苗接种</h3>
+                <p class="item-desc">各地开展大规模疫苗接种工作，构筑群体免疫屏障，守护人民健康。</p>
+            </div>
+        </article>
+    </div>
+</main>
+
+<section class="featured-section">
+    <div class="section-header">
+        <h2>抗疫精神回顾</h2>
+        <p>铭记历史，致敬每一个平凡而伟大的身影</p>
+    </div>
+    <div class="featured-content">
+        <div class="featured-row">
+            <div class="featured-text">
+                <h3>生命至上，举国同心</h3>
+                <p>在这场没有硝烟的战争中，中国人民展现出了空前的团结。从中央到地方，从城市到乡村，上下一心，众志成城。无数感人至深的故事在中华大地上发生，汇聚成抗击疫情的磅礴力量。</p>
+                <a href="#" style="color: var(--primary-color); font-weight: bold;">查看更多专题 &rarr;</a>
+            </div>
+            <div class="featured-image">
+                <img src="https://picsum.photos/seed/hero1/600/350" alt="众志成城">
+            </div>
+        </div>
+        <div class="featured-row reverse">
+            <div class="featured-text">
+                <h3>尊重科学，精准施策</h3>
+                <p>抗疫斗争的成功，离不开科学技术的支撑。从病毒基因测序到疫苗研发，从流行病学调查到临床诊疗方案，科学精神贯穿始终。精准的防控策略有效遏制了疫情的扩散，最大限度保护了人民生命安全和身体健康。</p>
+                <a href="#" style="color: var(--primary-color); font-weight: bold;">了解科学防疫知识 &rarr;</a>
+            </div>
+            <div class="featured-image">
+                <img src="https://picsum.photos/seed/hero2/600/350" alt="科学防疫">
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="stats-bar">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <h4>1000+</h4>
+            <p>收录高清图片</p>
+        </div>
+        <div class="stat-item">
+            <h4>50+</h4>
+            <p>分类主题</p>
+        </div>
+        <div class="stat-item">
+            <h4>24/7</h4>
+            <p>持续更新</p>
+        </div>
+        <div class="stat-item">
+            <h4>免费</h4>
+            <p>商用授权</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <h3>对抗疫情的图片大全</h3>
+        <p>致力于收集和整理抗击疫情相关的真实影像资料，用于历史记录、教育宣传和公益用途。</p>
+        <div class="copyright">
+            &copy; 2023 抗疫影像库 版权所有
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
