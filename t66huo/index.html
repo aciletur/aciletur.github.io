@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>t66火车 - 时刻查询、车票预订与出行指南</title>
+    <meta name="description" content="t66火车时刻表查询、票价信息及出行指南。提供实时列车运行状态、车站信息、旅途注意事项及常见问题解答，助您轻松规划铁路出行。">
+    <meta name="keywords" content="t66火车,t66次列车,火车时刻表,列车时刻查询,t66次票价">
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #d32f2f; /* 火车红 */
+            --secondary-color: #f5f5f5;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --border-color: #e0e0e0;
+            --spacing-unit: 16px;
+            --container-width: 1200px;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: #f9f9f9;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Layout */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        /* Header */
+        header {
+            background: #fff;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-menu a {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Search Bar */
+        .search-box {
+            background: white;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: flex-end;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .input-group {
+            flex: 1;
+            min-width: 200px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #b71c1c;
+        }
+
+        /* Main Content */
+        main {
+            padding: 40px 0;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            padding-left: 12px;
+            border-left: 4px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* T66 Specific Info */
+        .train-info-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .train-header {
+            background: #fff;
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .train-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary-color);
+            letter-spacing: 2px;
+        }
+
+        .train-route {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .train-meta {
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            gap: 16px;
+        }
+
+        .train-meta span strong {
+            color: var(--text-main);
+        }
+
+        .train-body {
+            padding: 0;
+        }
+
+        .station-row {
+            display: grid;
+            grid-template-columns: 80px 1fr 100px 1fr 100px 1fr;
+            border-bottom: 1px solid var(--border-color);
+            align-items: center;
+            padding: 16px 20px;
+            background: #fff;
+        }
+
+        .station-row:last-child {
+            border-bottom: none;
+        }
+
+        .station-row:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        .station-name {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .station-time {
+            text-align: center;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .station-time span {
+            display: block;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .station-duration {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .station-stop {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .station-row.highlight {
+            background-color: #fff3e0;
+        }
+
+        .station-row.highlight .station-name {
+            color: #e65100;
+        }
+
+        /* Grid Layout for Other Info */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .ticket-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .ticket-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .ticket-price {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .tips-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        .tips-list li::before {
+            content: "•";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* FAQ */
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            font-size: 15px;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: "-";
+        }
+
+        /* Footer */
+        footer {
+            background: #2c2c2c;
+            color: #ccc;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .station-row {
+                grid-template-columns: 60px 1fr 80px;
+                gap: 10px;
+            }
+
+            .station-duration, .station-stop {
+                display: none;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <a href="#" class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16"/><path d="M4 15h16"/><path d="M9 4v16"/><path d="M15 4v16"/></svg>
+            <span>T66出行</span>
+        </a>
+        <nav class="nav-menu">
+            <a href="#">首页</a>
+            <a href="#">时刻查询</a>
+            <a href="#">票务预订</a>
+            <a href="#">出行指南</a>
+            <a href="#">关于我们</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h1>T66 火车时刻查询</h1>
+        <p>为您提供T66次列车的详细信息、停靠站点、运行时间及票价参考，助您高效规划行程。</p>
+        
+        <div class="search-box">
+            <div class="input-group">
+                <label>出发地</label>
+                <input type="text" placeholder="例如：北京">
+            </div>
+            <div class="input-group">
+                <label>目的地</label>
+                <input type="text" placeholder="例如：上海">
+            </div>
+            <div class="input-group">
+                <label>日期</label>
+                <input type="date">
+            </div>
+            <button class="btn-primary">查询车次</button>
+        </div>
+    </div>
+</section>
+
+<main class="container">
+    <!-- T66 Specific Content -->
+    <section class="train-info-card">
+        <div class="train-header">
+            <div>
+                <div class="train-number">T66</div>
+                <div class="train-route">北京西 &rarr; 上海南</div>
+            </div>
+            <div class="train-meta">
+                <span>历时: <strong>约12小时</strong></span>
+                <span>类型: <strong>直达特快</strong></span>
+                <span>票价参考: <strong>硬座 ¥190 / 硬卧 ¥341</strong></span>
+            </div>
+        </div>
+        <div class="train-body">
+            <div class="station-row highlight">
+                <div class="station-name">北京西</div>
+                <div class="station-time">18:00</div>
+                <div class="station-duration">--</div>
+                <div class="station-stop">始发站</div>
+                <div class="station-stop">--</div>
+            </div>
+            <div class="station-row">
+                <div class="station-name">天津西</div>
+                <div class="station-time">19:36</div>
+                <div class="station-duration">1小时36分</div>
+                <div class="station-stop">通过</div>
+                <div class="station-stop">1分</div>
+            </div>
+            <div class="station-row">
+                <div class="station-name">济南西</div>
+                <div class="station-time">22:38</div>
+                <div class="station-duration">3小时02分</div>
+                <div class="station-stop">通过</div>
+                <div class="station-stop">2分</div>
+            </div>
+            <div class="station-row">
+                <div class="station-name">南京</div>
+                <div class="station-time">02:50</div>
+                <div class="station-duration">4小时12分</div>
+                <div class="station-stop">通过</div>
+                <div class="station-stop">2分</div>
+            </div>
+            <div class="station-row">
+                <div class="station-name">上海南</div>
+                <div class="station-time">06:00</div>
+                <div class="station-duration">12小时00分</div>
+                <div class="station-stop">终点站</div>
+                <div class="station-stop">--</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="info-grid">
+        <!-- Left Column -->
+        <div class="left-col">
+            <div class="section-title">
+                <span>出行指南与购票建议</span>
+            </div>
+            
+            <article class="card">
+                <h3>关于 T66 次列车</h3>
+                <p>T66次列车是一趟由北京西站开往上海南站的重要直达特快列车。列车全程跨越京津冀、鲁苏两省，是连接首都与长三角地区的重要交通纽带。</p>
+                <br>
+                <p>该列车采用25T型客车车底，提供硬座、硬卧、软卧等多种席位。由于途经主要城市，车票在节假日期间较为紧张，建议提前通过12306官网或APP进行预订。</p>
+            </article>
+
+            <article class="card">
+                <h3>旅途注意事项</h3>
+                <ul class="tips-list">
+                    <li><strong>行李携带：</strong>成人旅客可携带总重量不超过20公斤的行李，超过部分需办理托运。</li>
+                    <li><strong>安检要求：</strong>进站时请配合工作人员进行安全检查，禁止携带易燃易爆及管制刀具。</li>
+                    <li><strong>餐食服务：</strong>列车上提供餐车服务，支持点餐；也可自备干粮。</li>
+                    <li><strong>时间提醒：</strong>列车运行时间受天气及客流影响可能有所变动，建议出发前再次确认。</li>
+                </ul>
+            </article>
+
+            <article class="card">
+                <h3>常见问题 (FAQ)</h3>
+                <div class="faq-item">
+                    <div class="faq-question">T66次列车几点发车？</div>
+                    <div class="faq-answer">T66次列车通常在每日18:00从北京西站发车。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">从北京到上海需要多长时间？</div>
+                    <div class="faq-answer">T66次列车全程运行时间约为12小时。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">T66次列车停靠哪些主要站点？</div>
+                    <div class="faq-answer">主要停靠天津西、济南西、南京等大站，最终到达上海南。</div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Right Column -->
+        <aside class="right-col">
+            <div class="section-title">
+                <span>票价参考</span>
+            </div>
+            <div class="card">
+                <div class="ticket-list">
+                    <div class="ticket-item">
+                        <span>硬座</span>
+                        <span class="ticket-price">¥190</span>
+                    </div>
+                    <div class="ticket-item">
+                        <span>硬卧 (中)</span>
+                        <span class="ticket-price">¥341</span>
+                    </div>
+                    <div class="ticket-item">
+                        <span>软卧 (下)</span>
+                        <span class="ticket-price">¥537</span>
+                    </div>
+                    <div class="ticket-item">
+                        <span>商务座</span>
+                        <span class="ticket-price">¥926</span>
+                    </div>
+                </div>
+                <p style="margin-top:16px; font-size:12px; color:#999;">* 以上票价仅供参考，具体以12306官网实时查询为准。</p>
+            </div>
+
+            <div class="card">
+                <h3>热门车次推荐</h3>
+                <ul class="tips-list">
+                    <li><a href="#">G101 北京南 - 上海虹桥 (4.5小时)</a></li>
+                    <li><a href="#">D701 北京南 - 上海虹桥 (10小时)</a></li>
+                    <li><a href="#">T109 北京西 - 上海南 (12.5小时)</a></li>
+                    <li><a href="#">G19 北京南 - 上海虹桥 (4.5小时)</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>T66出行</h4>
+                <p style="font-size: 14px; line-height: 1.8;">专注于为旅客提供最准确的火车时刻查询、票务信息及出行攻略。让每一次旅途都变得简单便捷。</p>
+            </div>
+            <div class="footer-col">
+                <h4>快速链接</h4>
+                <ul>
+                    <li><a href="#">时刻查询</a></li>
+                    <li><a href="#">列车动态</a></li>
+                    <li><a href="#">车站指南</a></li>
+                    <li><a href="#">常见问题</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>服务支持</h4>
+                <ul>
+                    <li><a href="#">退改签指南</a></li>
+                    <li><a href="#">行李托运规定</a></li>
+                    <li><a href="#">失物招领</a></li>
+                    <li><a href="#">联系客服</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 T66出行网. All Rights Reserved. 本站信息仅供参考，具体以铁路部门公布为准。
+        </div>
+    </div>
+</footer>
+
+<script>
+    // 简单的 FAQ 交互逻辑
+    document.querySelectorAll('.faq-question').forEach(item => {
+        item.addEventListener('click', event => {
+            const parent = item.parentNode;
+            parent.classList.toggle('active');
+        });
+    });
+</script>
+
+</body>
+</html>
